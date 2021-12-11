@@ -14,8 +14,8 @@ public class Application {
 	}
 
 	@GetMapping
-    public String home() {
-        return "Hello Todo CRUD Application!";
-    }
+	public String home() {
+        	return "Hello Todo CRUD Application!";
+	}
 
 }
