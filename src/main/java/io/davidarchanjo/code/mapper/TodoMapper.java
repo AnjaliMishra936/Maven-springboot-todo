@@ -4,8 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import io.davidarchanjo.code.model.domain.TodoDTO;
-import io.davidarchanjo.code.model.dto.Todo;
+import io.davidarchanjo.code.model.domain.Todo;
+import io.davidarchanjo.code.model.dto.TodoDTO;
 
 @Component
 public class TodoMapper {

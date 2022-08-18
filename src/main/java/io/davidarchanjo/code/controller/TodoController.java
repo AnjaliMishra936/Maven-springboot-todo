@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import io.davidarchanjo.code.model.domain.TodoDTO;
+import io.davidarchanjo.code.model.dto.TodoDTO;
 import io.davidarchanjo.code.service.TodoService;
 
 @Validated

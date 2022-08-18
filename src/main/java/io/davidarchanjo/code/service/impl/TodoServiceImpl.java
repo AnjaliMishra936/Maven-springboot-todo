@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.davidarchanjo.code.mapper.TodoMapper;
-import io.davidarchanjo.code.model.domain.TodoDTO;
+import io.davidarchanjo.code.model.dto.TodoDTO;
 import io.davidarchanjo.code.repository.TodoRepository;
 import io.davidarchanjo.code.service.TodoService;
 

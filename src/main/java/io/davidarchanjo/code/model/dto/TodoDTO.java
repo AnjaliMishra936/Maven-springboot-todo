@@ -1,4 +1,4 @@
-package io.davidarchanjo.code.model.domain;
+package io.davidarchanjo.code.model.dto;
 
 import javax.validation.constraints.NotNull;
 

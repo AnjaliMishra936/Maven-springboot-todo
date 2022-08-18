@@ -2,7 +2,7 @@ package io.davidarchanjo.code.service;
 
 import java.util.List;
 
-import io.davidarchanjo.code.model.domain.TodoDTO;
+import io.davidarchanjo.code.model.dto.TodoDTO;
 
 public interface TodoService {
 
