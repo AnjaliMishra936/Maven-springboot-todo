@@ -31,11 +31,11 @@ public class TodoController {
     
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody TodoDTO dto, UriComponentsBuilder uriComponentsBuilder) {
-        final TodoDTO todo = service.create(dto);
-        final UriComponents uriComponents = uriComponentsBuilder
+        var todo = service.create(dto);
+        var uriComponents = uriComponentsBuilder
             .path("/api/todo/{id}")
             .buildAndExpand(todo.getId());
-        final HttpHeaders headers = new HttpHeaders();
+        var headers = new HttpHeaders();
         headers.setLocation(uriComponents.toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
