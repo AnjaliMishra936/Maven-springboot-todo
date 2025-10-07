@@ -3,9 +3,6 @@ description: Build Maven Spring Boot project
 runs:
   using: "composite"
   steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
@@ -14,3 +11,4 @@ runs:
 
     - name: Build with Maven
       run: mvn clean package -DskipTests
+      shell: bash
