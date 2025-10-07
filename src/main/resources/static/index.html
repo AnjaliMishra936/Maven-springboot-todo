@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; }
+        h1 { text-align: center; }
+        ul { list-style-type: none; padding: 0; }
+        li { padding: 8px 0; border-bottom: 1px solid #ccc; }
+        input[type="text"] { width: 70%; padding: 6px; }
+        button { padding: 6px 12px; }
+    </style>
+</head>
+<body>
+    <h1>Todo App</h1>
+
+    <div>
+        <input type="text" id="newTask" placeholder="Enter new task">
+        <button onclick="addTodo()">Add</button>
+    </div>
+
+    <ul id="todoList"></ul>
+
+    <script>
+        const API_URL = "/api/todo";
+
+        // Fetch and display todos
+        async function loadTodos() {
+            const response = await fetch(API_URL);
+            const todos = await response.json();
+            const list = document.getElementById('todoList');
+            list.innerHTML = '';
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.textContent = `${todo.task} [${todo.completed ? "Done" : "Pending"}]`;
+                list.appendChild(li);
+            });
+        }
+
+        // Add a new todo
+        async function addTodo() {
+            const input = document.getElementById('newTask');
+            const task = input.value.trim();
+            if (!task) return alert("Task cannot be empty");
+
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ task: task, completed: false })
+            });
+
+            input.value = '';
+            loadTodos();
+        }
+
+        // Initial load
+        loadTodos();
+    </script>
+</body>
+</html>
