@@ -10,11 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Reusable Maven build
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
       - name: Run Maven build
         uses: ./.github/actions/maven-build
 
-      
       - name: Copy JAR to EC2
         uses: appleboy/scp-action@v0.1.5
         with:
@@ -24,7 +25,6 @@ jobs:
           source: "target/spring-boot-todo-crud-0.0.1-SNAPSHOT.jar"
           target: "/home/ec2-user/Maven-springboot-todo/"
 
-     
       - name: Restart Spring Boot on EC2
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -33,5 +33,5 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             mkdir -p /home/ec2-user/app
-            pkill -f 'spring-boot-todo-crud-0.0.1-SNAPSHOT.jar'
-            nohup java -jar /home/ec2-user/Maven-springboot-todo/target/spring-boot-todo-crud-0.0.1-SNAPSHOT.jar > /home/ec2-user/app/app.log 2>&1 &
+            pkill -f 'spring-boot-todo-crud-0.0.1-SNAPSHOT.jar' || true
+            nohup java -jar /home/ec2-user/Maven-springboot-todo/spring-boot-todo-crud-0.0.1-SNAPSHOT.jar > /home/ec2-user/app/app.log 2>&1 &
