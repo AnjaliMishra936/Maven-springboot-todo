@@ -36,8 +36,9 @@ jobs:
             --document-name "AWS-RunShellScript" \
             --parameters 'commands=[
               "sudo systemctl stop springboot || true",
-              "mkdir -p /home/ec2-user/Maven-springboot-todo",
-              "aws s3 cp s3://${{ secrets.S3_BUCKET }}/app.jar /home/ec2-user/Maven-springboot-todo/spring-boot-todo-crud-0.0.1-SNAPSHOT.jar",
+              "sudo mkdir -p /home/ssm-user/Maven-springboot-todo",
+              "sudo chown -R ssm-user:ssm-user /home/ssm-user/Maven-springboot-todo",
+              "aws s3 cp s3://${{ secrets.S3_BUCKET }}/app.jar /home/ssm-user/Maven-springboot-todo/spring-boot-todo-crud-0.0.1-SNAPSHOT.jar",
               "sudo systemctl start springboot"
             ]' \
             --region ${{ secrets.AWS_REGION }}
